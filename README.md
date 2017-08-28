@@ -9,11 +9,14 @@ Molecule Design using Monte Carlo Tree Search with Neural Rollout. ChemTS can de
 
 
 #  Train a RNN model for molecule generation
-Run python train_RNN.py to train the RNN model. GPU is highly recommended for reducing the training time.
+1. Run python train_RNN.py to train the RNN model. GPU is highly recommended for reducing the training time.
 
 #  Design materials with desired HOMO-LUMO and internal energy
+1. Run python qspr_training.py train a qspr model.
+2. Run python qspr_mcts.py to search novel materials with desired HOMO-LUMO gap and energy.
 
 #  Design molecules active to target proteins
+1. Run python ligand_mcts.py 
 
-#  MCTS search better molecules
-Run python MCTS-RNN.py
+#  MCTS for logP optimization
+1. Run python MCTS-RNN.py
