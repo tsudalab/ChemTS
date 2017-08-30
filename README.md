@@ -2,7 +2,7 @@
 Molecule Design using Monte Carlo Tree Search with Neural Rollout. ChemTS can design novel materials with desired HOMO-LUMO gap and interal energy. Combining with rDock, ChemTS can design molecules active to target proteins.
 
 #  Requirements 
-1. Python>=2.7
+1. Python>=2.7 [ViennaRNA Package](https://www.tbi.univie.ac.at/RNA/index.html)
 2. Keras library
 3. Rdkit
 4. rDock
