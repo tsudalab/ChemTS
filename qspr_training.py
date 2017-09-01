@@ -28,7 +28,7 @@ def organic():
 
     sen_space=[]
     #f = open('/Users/yang/smiles.csv', 'rb')
-    f = open('/Users/yang/LSTM-chemical-project/smile_trainning.csv', 'rb')
+    f = open('data/smile_trainning.csv', 'rb')
     #f = open('/Users/yang/Downloads/molecule-autoencoder-master/data/250k_rndm_zinc_drugs_clean.smi', 'rb')
 
     reader = csv.reader(f)
@@ -178,7 +178,7 @@ def prepare_data(smile):
 
 
 def prepare_y_data():
-    reader = csv.reader(open("/Users/yang/LSTM-chemical-project/yoshida_y_train.csv", "rb"), delimiter=",")
+    reader = csv.reader(open("data/yoshida_y_train.csv", "rb"), delimiter=",")
     y = list(reader)
 
     result = np.array(y).astype('float')
@@ -190,10 +190,10 @@ def prepare_y_data():
 def save_model(model):
     # serialize model to JSON
     model_json = model.to_json()
-    with open("/Users/yang/LSTM-chemical-project/qspr_model/homo_model.json", "w") as json_file:
+    with open("homo_model.json", "w") as json_file:
         json_file.write(model_json)
     # serialize weights to HDF5
-    model.save_weights("/Users/yang/LSTM-chemical-project/qspr_model/homo_model.h5")
+    model.save_weights("homo_model.h5")
     print("Saved model to disk")
 
 
@@ -214,12 +214,12 @@ def save_model(model):
 
 def qspr_loaded_homo_model():
     # load json and create model
-    json_file = open("/Users/yang/LSTM-chemical-project/qspr_model/homo_model.json", 'r')
+    json_file = open("homo_model.json", 'r')
     loaded_model_json = json_file.read()
     json_file.close()
     loaded_model = model_from_json(loaded_model_json)
     # load weights into new model
-    loaded_model.load_weights("/Users/yang/LSTM-chemical-project/qspr_model/homo_model.h5")
+    loaded_model.load_weights("homo_model.h5")
     print("Loaded model from disk")
 
     return loaded_model
