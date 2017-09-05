@@ -1,0 +1,53 @@
+RBT_PARAMETER_FILE_V1.00
+TITLE 1g9v_ASTEX
+
+RECEPTOR_FILE receptor.mol2
+RECEPTOR_FLEX 3.0
+
+##################################################################
+### CAVITY DEFINITION: REFERENCE LIGAND METHOD
+##################################################################
+SECTION MAPPER
+    SITE_MAPPER RbtLigandSiteMapper
+    REF_MOL crystal_ligand.sdf
+    RADIUS 6.0
+    SMALL_SPHERE 1.0
+    MIN_VOLUME 100
+    MAX_CAVITIES 1
+    VOL_INCR 0.0
+   GRIDSTEP 0.5
+END_SECTION
+
+################################################################
+# CAVITY DEFINITION: TWO SPHERES METHOD
+################################################################
+#SECTION MAPPER
+#    SITE_MAPPER RbtSphereSiteMapper
+##HETATM 2815  O   HOH   756      37.266 -20.992  -4.910  0.90 24.86      1CSE2940
+#    CENTER (7.185,8.250,22.649)
+#    RADIUS 15.0
+#    SMALL_SPHERE 1.5
+#    LARGE_SPHERE 6.0
+#    MAX_CAVITIES 1
+#END_SECTION
+
+#################################
+#CAVITY RESTRAINT PENALTY
+#################################
+SECTION CAVITY
+    SCORING_FUNCTION RbtCavityGridSF
+    WEIGHT 1.0
+END_SECTION
+
+#################################
+## PHARMACOPHORIC RESTRAINTS
+#################################
+#SECTION PHARMA
+#    SCORING_FUNCTION RbtPharmaSF
+#    WEIGHT 1.0
+#    CONSTRAINTS_FILE pharma_cdk2.const
+#   OPTIONAL_FILE optional.const
+#   NOPT 3
+#   WRITE_ERRORS TRUE
+#END_SECTION
+
