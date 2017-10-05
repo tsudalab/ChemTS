@@ -54,12 +54,8 @@ class Node:
 
 
     def Selectnode(self):
-
-        #s = sorted(self.childNodes, key = lambda c: c.wins/c.visits + np.sqrt(2)*sqrt(2*log(self.visits)/c.visits))[-1]
-        #s=random.choice(self.childNodes)
         ucb=[]
         for i in range(len(self.childNodes)):
-        #ind=argmax
             ucb.append(self.childNodes[i].wins/self.childNodes[i].visits+1.0*sqrt(2*log(self.visits)/self.childNodes[i].visits))
         m = np.amax(ucb)
         indices = np.nonzero(ucb == m)[0]
@@ -83,8 +79,6 @@ class Node:
 
         self.visits += 1
         self.wins += result
-        #print "self.wins:",self.wins
-        #print "self.visits:",self.visits
 
 def MCTS(root, verbose = False):
 
@@ -115,10 +109,8 @@ def MCTS(root, verbose = False):
 
     while maxnum<10100:
         print maxnum
-        #iteration_time=time.time()
-
-        node = rootnode # important !    this node is different with state / node is the tree node
-        state = root.Clone() # but this state is the state of the initialization .  too important !!!
+        node = rootnode
+        state = root.Clone()
         """selection step"""
         node_pool=[]
         print "current found max_score:",max_score
@@ -128,74 +120,83 @@ def MCTS(root, verbose = False):
             state.SelectPosition(node.position)
         print "state position:,",state.position
         depth.append(len(state.position))
-
-
-        """------------------------------------------------------------------"""
-
-        """expansion step"""
-        """calculate how many nodes will be added under current leaf"""
-        expanded=expanded_node(model,state.position,val)
-        nodeadded=node_to_add(expanded,val)
-
-
-        all_posible=chem_kn_simulation(model,state.position,val,nodeadded)
-        generate_smile=predict_smile(all_posible,val)
-        new_compound=make_input_smile(generate_smile)
-
-        node_index,score,valid_smile,all_smile=check_node_type(new_compound,SA_mean,SA_std,logP_mean,logP_std,cycle_mean,cycle_std)
-
-        print node_index
-        valid_compound.extend(valid_smile)
-        all_simulated_compound.extend(all_smile)
-        all_score.extend(score)
-        iteration_num=len(all_simulated_compound)
-        if len(node_index)==0:
+        if len(state.position)>=81:
             re=-1.0
             while node != None:
                 node.Update(re)
                 node = node.parentNode
         else:
-            for i in range(len(node_index)):
-                #m=node_index[i]
-                maxnum=maxnum+1
-                node.Addnode(nodeadded[i],state)
-                node_pool.append(node.childNodes[i])
-                if score[i]>=max_score:
-                    max_score=score[i]
-                    current_score.append(max_score)
-                else:
-                   current_score.append(max_score)
-                depth.append(len(state.position))
-                """simulation"""
-                re=(0.8*score[i])/(1.0+abs(0.8*score[i]))
-                if maxnum==100:
-                    maxscore100=max_score
-                    time100=time.time()-start_time
-                if maxnum==500:
-                    maxscore500=max_score
-                    time500=time.time()-start_time
-                if maxnum==1000:
+            """------------------------------------------------------------------"""
 
-                    maxscore1000=max_score
-                    time1000=time.time()-start_time
-                if maxnum==5000:
-                    maxscore5000=max_score
-                    time5000=time.time()-start_time
-                if maxnum==10000:
-                    time10000=time.time()-start_time
-                    maxscore10000=max_score
-                    #valid10000=10000*1.0/len(all_simulated_compound)
-                """backpropation step"""
-            #print "node pool length:",len(node.childNodes)
+            """expansion step"""
+            """calculate how many nodes will be added under current leaf"""
+            expanded=expanded_node(model,state.position,val)
+            nodeadded=node_to_add(expanded,val)
 
-            for i in range(len(node_pool)):
 
-                node=node_pool[i]
+            all_posible=chem_kn_simulation(model,state.position,val,nodeadded)
+            generate_smile=predict_smile(all_posible,val)
+            new_compound=make_input_smile(generate_smile)
+
+            node_index,score,valid_smile,all_smile=check_node_type(new_compound,SA_mean,SA_std,logP_mean,logP_std,cycle_mean,cycle_std)
+
+            print node_index
+            valid_compound.extend(valid_smile)
+            all_simulated_compound.extend(all_smile)
+            all_score.extend(score)
+            iteration_num=len(all_simulated_compound)
+            if len(node_index)==0:
+                re=-1.0
                 while node != None:
                     node.Update(re)
                     node = node.parentNode
+            else:
+                for i in range(len(node_index)):
+                    maxnum=maxnum+1
+                    node.Addnode(nodeadded[i],state)
+                    node_pool.append(node.childNodes[i])
+                    if score[i]>=max_score:
+                        max_score=score[i]
+                        current_score.append(max_score)
+                    else:
+                       current_score.append(max_score)
+                    depth.append(len(state.position))
+                    """simulation"""
+                    re=(0.8*score[i])/(1.0+abs(0.8*score[i]))
+                    if maxnum==100:
+                        maxscore100=max_score
+                        time100=time.time()-start_time
+                    if maxnum==500:
+                        maxscore500=max_score
+                        time500=time.time()-start_time
+                    if maxnum==1000:
+
+                        maxscore1000=max_score
+                        time1000=time.time()-start_time
+                    if maxnum==5000:
+                        maxscore5000=max_score
+                        time5000=time.time()-start_time
+                    if maxnum==10000:
+                        time10000=time.time()-start_time
+                        maxscore10000=max_score
+                        #valid10000=10000*1.0/len(all_simulated_compound)
+                    """backpropation step"""
+                #print "node pool length:",len(node.childNodes)
+
+                for i in range(len(node_pool)):
+
+                    node=node_pool[i]
+                    while node != None:
+                        node.Update(re)
+                        node = node.parentNode
+
             #finish_iteration_time=time.time()-iteration_time
             #print "four step time:",finish_iteration_time
+
+
+
+
+
 
         """check if found the desired compound"""
 
