@@ -147,9 +147,10 @@ def MCTS(root, verbose = False):
                 node.Update(re)
                 node = node.parentNode
         else:
+            re=[]
             for i in range(len(node_index)):
                 m=node_index[i]
-                node.Addnode(nodeadded[i],state)
+                node.Addnode(nodeadded[m],state)
                 node_pool.append(node.childNodes[i])
                 depth.append(len(state.position))
                 print "current minmum score",min_score
@@ -159,14 +160,14 @@ def MCTS(root, verbose = False):
                 else:
                     min_score_distribution.append(min_score)
                 """simulation"""
-                re=(-0.8*rdock_score[i])/(1+0.8*abs(rdock_score[i]))
+                re.append((-0.8*rdock_score[i])/(1+0.8*abs(rdock_score[i])))
                 """backpropation step"""
 
             for i in range(len(node_pool)):
 
                 node=node_pool[i]
                 while node != None:
-                    node.Update(re)
+                    node.Update(re[i])
                     node = node.parentNode
 
 
