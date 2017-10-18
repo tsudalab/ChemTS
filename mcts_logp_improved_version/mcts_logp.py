@@ -151,9 +151,11 @@ def MCTS(root, verbose = False):
                     node.Update(re)
                     node = node.parentNode
             else:
+                re=[]
                 for i in range(len(node_index)):
+                    m=node_index[i]
                     maxnum=maxnum+1
-                    node.Addnode(nodeadded[i],state)
+                    node.Addnode(nodeadded[m],state)
                     node_pool.append(node.childNodes[i])
                     if score[i]>=max_score:
                         max_score=score[i]
@@ -187,7 +189,7 @@ def MCTS(root, verbose = False):
 
                     node=node_pool[i]
                     while node != None:
-                        node.Update(re)
+                        node.Update(re[i])
                         node = node.parentNode
 
             #finish_iteration_time=time.time()-iteration_time
