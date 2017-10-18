@@ -164,7 +164,7 @@ def MCTS(root, verbose = False):
                        current_score.append(max_score)
                     depth.append(len(state.position))
                     """simulation"""
-                    re=(0.8*score[i])/(1.0+abs(0.8*score[i]))
+                    re.append((0.8*score[i])/(1.0+abs(0.8*score[i])))
                     if maxnum==100:
                         maxscore100=max_score
                         time100=time.time()-start_time
