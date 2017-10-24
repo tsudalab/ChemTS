@@ -19,8 +19,6 @@ import sys
 from keras.utils.np_utils import to_categorical
 from keras.preprocessing import sequence
 from keras.models import model_from_json
-from make_smile import zinc_data_with_bracket, zinc_processed_with_bracket
-
 def prepare_data(smiles,all_smile):
     all_smile_index=[]
     for i in range(len(all_smile)):

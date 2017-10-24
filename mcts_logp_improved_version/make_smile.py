@@ -12,49 +12,6 @@ import matplotlib.pyplot as plt
 from rdkit.Chem import Descriptors
 import os
 
-def zinc_data_with_bracket():
-
-    sen_space=[]
-    #f = open('/Users/yang/smiles.csv', 'rb')
-    #f = open('/Users/yang/LSTM-chemical-project/smile_trainning.csv', 'rb')
-    f = open(filename,'rb')
-
-    reader = csv.reader(f)
-    for row in reader:
-        #word_space[row].append(reader[row])
-        #print word_sapce
-        sen_space.append(row)
-    #print sen_space
-    f.close()
-
-    word1=sen_space[0]
-    word_space=list(word1[0])
-    end="\n"
-
-    zinc_processed=[]
-    organic_smile=[]
-    t=0
-    for i in range(len(sen_space)):
-        word1=sen_space[i]
-        m = Chem.MolFromSmiles(word1[0])
-        Chem.Kekulize(m)
-        s=Chem.MolToSmiles(m,kekuleSmiles=True)
-        zinc_processed.append(s)
-        #word_space=list(word1[0])
-    #print len(zinc_processed)
-
-    while t <len(zinc_processed):
-        #print t
-        word2=zinc_processed[t]
-        word_space=list(word2)
-        word=[]
-
-        organic_smile.append(word_space)
-        t=t+1
-
-    #print len(organic_smile)
-    #print organic_smile
-    return organic_smile
 
 def zinc_processed_with_bracket(sen_space):
     #print sen_space
@@ -195,11 +152,3 @@ def zinc_data_with_bracket_original():
 
 
 
-
-
-#hi=organic()
-#organic_logp(hi)
-
-#hi=zinc_data_with_bracket_original()
-#zinc_logp(hi)
-#zinc_processed_with_bracket(hi)
