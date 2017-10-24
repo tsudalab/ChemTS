@@ -3,7 +3,7 @@ Molecule Design using Monte Carlo Tree Search with Neural Rollout. ChemTS can de
 
 #  Requirements 
 1. [Python](https://www.anaconda.com/download/)>=2.7 
-2. [Keras](version 2.0.5)(https://github.com/fchollet/keras) install it using: pip install keras=2.0.5
+2. [Keras](https://github.com/fchollet/keras) (version 2.0.5) install it using: pip install keras=2.0.5
 3. [rdkit](https://anaconda.org/rdkit/rdkit)
 4. [rDock](http://rdock.sourceforge.net/installation/)
 
