@@ -154,7 +154,7 @@ def zinc_data_with_bracket_original():
     sen_space=[]
     #f = open('/Users/yang/smiles.csv', 'rb')
     #f = open('/Users/yang/LSTM-chemical-project/smile_trainning.csv', 'rb')
-    f = open('/Users/yang/ChemTS/data/250k_rndm_zinc_drugs_clean.smi', 'rb')
+    f = open('../data/250k_rndm_zinc_drugs_clean.smi', 'rb')
 
     reader = csv.reader(f)
     for row in reader:

@@ -10,14 +10,14 @@ from rdkit.Chem import Draw
 from IPython import display
 import matplotlib.pyplot as plt
 from rdkit.Chem import Descriptors
-
+import os
 
 def zinc_data_with_bracket():
 
     sen_space=[]
     #f = open('/Users/yang/smiles.csv', 'rb')
     #f = open('/Users/yang/LSTM-chemical-project/smile_trainning.csv', 'rb')
-    f = open('/home/yang/LSTM-chemical-project/data/250k_rndm_zinc_drugs_clean.smi', 'rb')
+    f = open(filename,'rb')
 
     reader = csv.reader(f)
     for row in reader:
@@ -152,10 +152,7 @@ def zinc_logp(smile):
 def zinc_data_with_bracket_original():
 
     sen_space=[]
-    #f = open('/Users/yang/smiles.csv', 'rb')
-    #f = open('/Users/yang/LSTM-chemical-project/smile_trainning.csv', 'rb')
-    f = open('/Users/yang/ChemTS/data/250k_rndm_zinc_drugs_clean.smi', 'rb')
-
+    f = open('../data/250k_rndm_zinc_drugs_clean.smi','rb')
     reader = csv.reader(f)
     for row in reader:
         #word_space[row].append(reader[row])
