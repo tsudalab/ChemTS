@@ -237,8 +237,8 @@ if __name__ == "__main__":
     smile=zinc_data_with_bracket_original()
     valcabulary,all_smile=zinc_processed_with_bracket(smile)
     #valcabulary,all_smile=bond_atom(val,smile_without_bound)
-    print valcabulary
-    print len(all_smile)
+    print(valcabulary)
+    print(len(all_smile))
     #print valcabulary
     #print all_smile[0]
     #print all_smile[1]
@@ -273,16 +273,16 @@ if __name__ == "__main__":
     model = Sequential()
 
     model.add(Embedding(input_dim=vocab_size, output_dim=len(valcabulary), input_length=N,mask_zero=False))
-    model.add(GRU(output_dim=512, input_shape=(81,64),activation='tanh',return_sequences=True))
+    model.add(GRU(output_dim=256, input_shape=(81,64),activation='tanh',return_sequences=True))
     
-    model.add(Dropout(0.2))
+    #model.add(Dropout(0.2))
     #model.add(Conv1D(32,3,activation='relu',padding='same', activation='relu'))
     #model.add(MaxPooling1D(3))
     #model.add(Conv1D(32, 3, padding='same', activation='relu'))
     #model.add(MaxPooling1D(pool_size=2))
-    model.add(GRU(512,activation='tanh',return_sequences=True))
+    model.add(GRU(256,activation='tanh',return_sequences=True))
     #model.add(LSTM(output_dim=1000, activation='sigmoid',return_sequences=True))
-    model.add(Dropout(0.2))
+    #model.add(Dropout(0.2))
     #model.add(GRU(output_dim=256, activation='sigmoid',return_sequences=True))
    # model.add(Dropout(0.2))
     #model.add(LSTM(output_dim=1000,activation='sigmoid',return_sequences=True))

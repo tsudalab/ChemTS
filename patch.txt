@@ -1,0 +1,39 @@
+diff --git a/train_RNN/make_smile.py b/train_RNN/make_smile.py
+index b9d6e02..1f0bc46 100755
+--- a/train_RNN/make_smile.py
++++ b/train_RNN/make_smile.py
+@@ -145,8 +145,8 @@ def zinc_logp(smile):
+ 
+     ma=6.66134
+ 
+-    print max(logp_value)
+-    print logp_value
++    print(max(logp_value))
++    print(logp_value)
+ 
+ 
+ def zinc_data_with_bracket_original():
+@@ -154,7 +154,7 @@ def zinc_data_with_bracket_original():
+     sen_space=[]
+     #f = open('/Users/yang/smiles.csv', 'rb')
+     #f = open('/Users/yang/LSTM-chemical-project/smile_trainning.csv', 'rb')
+-    f = open('../data/250k_rndm_zinc_drugs_clean.smi', 'rb')
++    f = open('../data/250k_rndm_zinc_drugs_clean.smi', 'r')
+ 
+     reader = csv.reader(f)
+     for row in reader:
+diff --git a/train_RNN/train_RNN.py b/train_RNN/train_RNN.py
+index 5436c78..f17bba7 100644
+--- a/train_RNN/train_RNN.py
++++ b/train_RNN/train_RNN.py
+@@ -237,8 +237,8 @@ if __name__ == "__main__":
+     smile=zinc_data_with_bracket_original()
+     valcabulary,all_smile=zinc_processed_with_bracket(smile)
+     #valcabulary,all_smile=bond_atom(val,smile_without_bound)
+-    print valcabulary
+-    print len(all_smile)
++    print(valcabulary)
++    print(len(all_smile))
+     #print valcabulary
+     #print all_smile[0]
+     #print all_smile[1]
