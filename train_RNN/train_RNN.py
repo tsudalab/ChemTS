@@ -29,8 +29,6 @@ def load_data():
 
     sen_space=[]
     f = open('/Users/yang/smiles.csv', 'rb')
-    #f = open('/Users/yang/LSTM-chemical-project/make_sm.csv', 'rb')
-    #f = open('/Users/yang/LSTM-chemical-project/smile_trainning.csv', 'rb')
     reader = csv.reader(f)
     for row in reader:
         #word_space[row].append(reader[row])
@@ -214,38 +212,13 @@ def save_model(model):
     model.save_weights("model.h5")
     print("Saved model to disk")
 
-
-    # load json and create model
-    #json_file = open('model.json', 'r')
-    #loaded_model_json = json_file.read()
-    #json_file.close()
-    #loaded_model = model_from_json(loaded_model_json)
-    # load weights into new model
-    #loaded_model.load_weights("model.h5")
-    #print("Loaded model from disk")
-
-        # evaluate loaded model on test data
-    #loaded_model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-    #score = loaded_model.evaluate(X, y_pad_one_hot, verbose=0)
-    #print("%s: %.2f%%" % (loaded_model.metrics_names[1], score[1]*100))
-
-
-
-
-
 if __name__ == "__main__":
     smile=zinc_data_with_bracket_original()
     valcabulary,all_smile=zinc_processed_with_bracket(smile)
-    #valcabulary,all_smile=bond_atom(val,smile_without_bound)
     print(valcabulary)
     print(len(all_smile))
-    #print valcabulary
-    #print all_smile[0]
-    #print all_smile[1]
-    #print all_smile[2]
     X_train,y_train=prepare_data(valcabulary,all_smile)
-    #print X_train.shape
-    #print y_train.shape
+  
     maxlen=81
 
 
@@ -253,19 +226,14 @@ if __name__ == "__main__":
         padding='post', truncating='pre', value=0.)
     y = sequence.pad_sequences(y_train, maxlen=81, dtype='int32',
         padding='post', truncating='pre', value=0.)
-    #print X
-    #print y
+    
     
     y_train_one_hot = np.array([to_categorical(sent_label, num_classes=len(valcabulary)) for sent_label in y])
-    #X = np.reshape(X, (X.shape[0], X.shape[1], 1))
-    #X_train_one_hot= np.array([to_categorical(sent_label, nb_classes=len(valcabulary)) for sent_label in X])
-    #print (X_train_one_hot.shape)
     print (y_train_one_hot.shape)
 
     vocab_size=len(valcabulary)
     embed_size=len(valcabulary)
 
-    #print vacab_size
     
     N=X.shape[1]
 
@@ -274,32 +242,14 @@ if __name__ == "__main__":
 
     model.add(Embedding(input_dim=vocab_size, output_dim=len(valcabulary), input_length=N,mask_zero=False))
     model.add(GRU(output_dim=256, input_shape=(81,64),activation='tanh',return_sequences=True))
-    
+    #model.add(LSTM(output_dim=256, input_shape=(81,64),activation='tanh',return_sequences=True))
     model.add(Dropout(0.2))
-    #model.add(Conv1D(32,3,activation='relu',padding='same', activation='relu'))
-    #model.add(MaxPooling1D(3))
-    #model.add(Conv1D(32, 3, padding='same', activation='relu'))
-    #model.add(MaxPooling1D(pool_size=2))
     model.add(GRU(256,activation='tanh',return_sequences=True))
     #model.add(LSTM(output_dim=1000, activation='sigmoid',return_sequences=True))
-    model.add(Dropout(0.2))
-    #model.add(GRU(output_dim=256, activation='sigmoid',return_sequences=True))
-   # model.add(Dropout(0.2))
-    #model.add(LSTM(output_dim=1000,activation='sigmoid',return_sequences=True))
-    #model.add(Activation("sigmoid"))
-    #model.add(Dropout(0.2))
-
+    model.add(Dropout(0.2)
     model.add(TimeDistributed(Dense(embed_size, activation='softmax')))
-    #model.add(Dropout(0.05))
-    #print model
-    #model.add(LSTM(128, input_shape=(29,1)))
-    #model.add(Dense(29))
-    #model.add(Activation('linear'))
-    #optimizer = RMSprop(lr=0.005)
     optimizer=Adam(lr=0.01)
     print(model.summary())
     model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=['accuracy'])
-
     model.fit(X,y_train_one_hot,nb_epoch=100, batch_size=512,validation_split=0.1)
-    #performance_check(model,X)
     save_model(model)
