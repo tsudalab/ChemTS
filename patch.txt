@@ -2,6 +2,7 @@ diff --git a/train_RNN/make_smile.py b/train_RNN/make_smile.py
 index b9d6e02..1f0bc46 100755
 --- a/train_RNN/make_smile.py
 +++ b/train_RNN/make_smile.py
+
 @@ -145,8 +145,8 @@ def zinc_logp(smile):
  
      ma=6.66134
