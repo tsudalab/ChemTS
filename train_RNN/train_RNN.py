@@ -246,7 +246,7 @@ if __name__ == "__main__":
     model.add(Dropout(0.2))
     model.add(GRU(256,activation='tanh',return_sequences=True))
     #model.add(LSTM(output_dim=1000, activation='sigmoid',return_sequences=True))
-    model.add(Dropout(0.2)
+    model.add(Dropout(0.2))
     model.add(TimeDistributed(Dense(embed_size, activation='softmax')))
     optimizer=Adam(lr=0.01)
     print(model.summary())
