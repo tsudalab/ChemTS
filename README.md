@@ -3,12 +3,12 @@ Molecule Design using Monte Carlo Tree Search with Neural Rollout. ChemTS can de
 
 #  Requirements 
 1. [Python](https://www.anaconda.com/download/)>=2.7 
-2. [Keras](https://github.com/fchollet/keras) (version 2.0.5) If you installed the newest version of keras, some errors will show up. Please change it back to keras 2.0.5 by pip install keras=2.0.5. 
+2. [Keras](https://github.com/fchollet/keras) (version 2.0.5) If you installed the newest version of keras, some errors will show up. Please change it back to keras 2.0.5 by pip install keras==2.0.5. 
 3. [rdkit](https://anaconda.org/rdkit/rdkit)
 4. [rDock](http://rdock.sourceforge.net/installation/)
 
 #  How to use ChemTS? 
-For usage, please refer the following instructions.  Currently, the package hasn't been finished very well... If you want to implement your own simulator, please check add_node_type.py. The full package will be updated and finished before Jan 31, please wait a little bit. 
+For usage, please refer the following instructions.  Currently, the package hasn't been finished very well... If you want to implement your own simulator, please check add_node_type.py. The full package will be updated and finished before Jan 31.= 
 
 #  Train a RNN model for molecule generation
 1. cd train_RNN
