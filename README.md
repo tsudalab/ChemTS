@@ -1,5 +1,5 @@
 # ChemTS
-Molecule Design using Monte Carlo Tree Search with Neural Rollout. ChemTS can design novel materials with desired properties(such as, HOMO-LUMO gap, energy, logp..). Combining with rDock, ChemTS can design molecules active to target proteins. The ChemTS paper is available at https://arxiv.org/abs/1710.00616 .
+Molecule Design using Monte Carlo Tree Search with Neural Rollout. ChemTS can design novel molecules with desired properties(such as, HOMO-LUMO gap, energy, logp..). Combining with rDock, ChemTS can design molecules active to target proteins. The ChemTS paper is available at https://arxiv.org/abs/1710.00616 .
 
 #  Requirements 
 1. [Python](https://www.anaconda.com/download/)>=2.7 
@@ -8,7 +8,7 @@ Molecule Design using Monte Carlo Tree Search with Neural Rollout. ChemTS can de
 4. [rDock](http://rdock.sourceforge.net/installation/)
 
 #  How to use ChemTS? 
-For usage, please refer the following instructions.  Currently, the package hasn't been finished very well... If you want to implement your own simulator, please check add_node_type.py. The full package will be updated and finished before Jan 31.= 
+For usage, please refer the following instructions.  Currently, the package hasn't been finished very well... If you want to implement your own simulator, please check add_node_type.py. The full package will be updated and finished before Jan 31.
 
 #  Train a RNN model for molecule generation
 1. cd train_RNN
@@ -21,6 +21,6 @@ For usage, please refer the following instructions.  Currently, the package has
 2. Run python mcts_ligand.py 
 
 #  MCTS for logP optimization
-There are two versions of chemts for logP optimization. The old version considered all possible smiles symbols adding to the tree. The new version chemts only adds with high predictive probabilities to the tree.
+There are two versions of chemts for logP optimization. The search tree of the old version added all possible smiles symbols as children nodes. While the new version chemts only expands children nodes with high probabilities predicted by RNN.
 1. cd mcts_logp_improved_version
 2. Run python mcts_logp.py
