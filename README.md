@@ -8,7 +8,7 @@ Molecule Design using Monte Carlo Tree Search with Neural Rollout. ChemTS can de
 4. [rDock](http://rdock.sourceforge.net/installation/)
 
 #  How to use ChemTS? 
-For usage, please refer the following instructions.  Currently, the package hasn't been finished very well... If you want to implement your own simulator, please check add_node_type.py. The full package will be updated and finished before Jan 31.
+For usage, please refer the following instructions.  Currently, the package hasn't been finished very well... If you want to implement your own simulator, please check add_node_type.py. The full package will be updated later.
 
 #  Train a RNN model for molecule generation
 1. cd train_RNN
