@@ -24,3 +24,7 @@ For usage, please refer the following instructions.  Currently, the package has
 There are two versions of chemts for logP optimization. The search tree of the old version added all possible smiles symbols as children nodes. While the new version chemts only expands children nodes with high probabilities predicted by RNN.
 1. cd mcts_logp_improved_version
 2. Run python mcts_logp.py
+
+# License
+
+This package is distributed under the MIT License.
