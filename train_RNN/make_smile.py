@@ -8,7 +8,7 @@ import os
 from rdkit import Chem
 from rdkit.Chem import Draw
 from IPython import display
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 from rdkit.Chem import Descriptors
 
 
