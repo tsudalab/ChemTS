@@ -2,9 +2,9 @@ import csv
 import itertools
 import operator
 import numpy as np
-import nltk
+#import nltk
 import h5py
-import os
+#import os
 from datetime import datetime
 from keras.models import Sequential
 from keras.layers import Dense, Activation,TimeDistributed
