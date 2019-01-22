@@ -181,9 +181,21 @@ def check_node_type(new_compound):
 
     score=[]
     for i in range(len(new_compound)):
-        ko = Chem.MolFromSmiles(new_compound[i])
+        try:
+            ko = Chem.MolFromSmiles(new_compound[i])
+            
+        except:
+            ko=None
+        
         if ko!=None:
-            SA_score = -sascorer.calculateScore(MolFromSmiles(new_compound[i]))
+            try:
+                molscore=MolFromSmiles(new_compound[i])
+            except:
+                molscore=None
+            if molscore!=None:
+                SA_score = -sascorer.calculateScore(molscore)
+            esle:
+                SA_score=1000
             cycle_list = nx.cycle_basis(nx.Graph(rdmolops.GetAdjacencyMatrix(MolFromSmiles(new_compound[i]))))
             if len(cycle_list) == 0:
                  cycle_length =0
