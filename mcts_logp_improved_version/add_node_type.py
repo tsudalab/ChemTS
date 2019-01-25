@@ -190,7 +190,10 @@ def check_node_type(new_compound,SA_mean,SA_std,logP_mean,logP_std,cycle_mean,cy
         except:
             print None
         if m!=None and len(new_compound[i])<=81:
-            logp=Descriptors.MolLogP(m)
+            try:
+                logp=Descriptors.MolLogP(m)
+            except:
+                logp=-1000
             node_index.append(i)
             valid_compound.append(new_compound[i])
             SA_score = -sascorer.calculateScore(MolFromSmiles(new_compound[i]))
